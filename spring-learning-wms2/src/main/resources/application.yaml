@@ -1,0 +1,42 @@
+server:
+  port: 8007
+eureka:
+  client:
+    # 是否要注册到其他Eureka Server实例
+    register-with-eureka: true
+    # 是否要从其他Eureka Server实例获取数据
+    fetch-registry: true
+    service-url:
+      # 指定eureka server通信地址，注意/eureka/小尾巴不能少
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    # 是否注册IP到eureka server，如不指定或设为false，那就会注册主机名到eureka server
+    prefer-ip-address: true
+    virtual-host-name: wms
+
+
+spring:
+  application:
+    # 指定注册到eureka server上的服务名称，对于电影微服务，本系列将名称设为microservice-consumer-movie
+    name: wms
+  # 数据库连接配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=true
+    username: root
+    password: 123456
+    tomcat:
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

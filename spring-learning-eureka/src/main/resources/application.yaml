@@ -1,0 +1,24 @@
+server:
+  port: 8001
+eureka:
+  client:
+    # 是否要注册到其他Eureka Server实例
+    register-with-eureka: false
+    # 是否要从其他Eureka Server实例获取数据
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+
+
+spring:
+  # 数据库连接配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=true
+    username: root
+    password: 123456
+    tomcat:
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
